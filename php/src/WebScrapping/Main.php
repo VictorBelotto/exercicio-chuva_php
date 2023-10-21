@@ -4,7 +4,7 @@ namespace Chuva\Php\WebScrapping;
 namespace Chuva\Php\WebScrapping\Entity;
 use DOMDocument;
 use DOMXPath;
-require '../../vendor/autoload.php';
+require './php/vendor/autoload.php';
 libxml_use_internal_errors(true);
 
 class Main {
