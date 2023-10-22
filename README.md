@@ -1,34 +1,30 @@
-# Exercícios
+# 🌧️ Chuva Inc. Exercício 2023 🌧️
 
-Olá! Este repositório contém os exercícios de desenvolvimento da Chuva, você **deve** implementar pelo menos uma das tecnologias disponíveis, conforme sua preferência pessoal e aptidão.
+Olá! Este repositório contém a resolução do exercício proposto pela Chuva Inc.
+Foi apresentado 3 tipos de exercícios, cada um com uma tecnologia, e pudemos escolher qual resolver. No meu caso, optei por PHP.
 
-Só serão considerados para correção testes em que as verificações do Github Actions estejam passando (verdinhas).
+Neste exercício, o objetivo principal era capturar os dados de uma página HTML e convertê-los em uma planilha.
 
+## Sobre o desafio proposto pela Chuva Inc
 
-# Tecnologias
-## Dart
-Nesse caso você deve implementar um protótipo de alta fidelidade no figma de uma tela para você implementar em Flutter, [veja detalhes aqui](https://github.com/chuva-inc/exercicios-2023/tree/master/dart/).
+Em PHP, você deve implementar o [GaloScrapper](https://github.com/chuva-inc/exercicios-2023/tree/master/php/src/WebScrapping). 
 
-## PHP
-Em PHP você deve implementar o [GaloScrapper, veja os detalhes aqui](https://github.com/chuva-inc/exercicios-2023/tree/master/php/src/WebScrapping).
+## Pré-requisitos
 
-## Typescript + HTML + SCSS
-Nesse caso você deve implementar uma [página de trabalho](https://github.com/chuva-inc/exercicios-2023/tree/master/ts). Pra facilitar sua vida, nosso repositório já vem com pronto pra consumo, e mesmo que você não for familiar com o Angular ou Typescript, dá pra só colocar o html e o scss nos arquivos corretos, e vai funcionar (inclusive os testes automatizados vão passar).
+Certifique-se de ter os seguintes requisitos instalados:
 
-# FAQ
-Ficou com alguma dúvida? Crie uma issue nesse repo com a sua dúvida :)
+- PHP
+- Composer
 
-## Posso resolver mais de um exercício?
-Sim, pode resolver em todos se quiser, e vamos levar todas as resoluções em consideração!
+## Como usar
 
-## Tenho que resolver todos os exercícios?
-Não, você pode resolver só um, dois, ou todos.
+1. Clone este repositório em sua máquina.
+2. Navegue até o diretório do projeto.
+3. Execute `composer install` para instalar as dependências do projeto.
+4. Execute o comando `composer webscrapping` para iniciar o processo de Web Scrapping.
+5. Os dados coletados serão salvos em um arquivo chamado `resultadoWebscrapping.xlsx` dentro da pasta *src*.
 
-## Como entregar os exercícios?
+## Tecnologias utilizadas
 
-Para entregar os exercícios:
-
-1. Crie um fork **público** deste repositório.
-2. Enquanto programa sua solução, faça [commits atômicos](https://en.wikipedia.org/wiki/Atomic_commit).
-3. Quando estiver tudo passando nos testes, grave o vídeo explicando sua resolução.
-4. Nos envie o link do seu repositório pelo formulário que te enviamos.
+- PHP
+- [Box/Spout](https://github.com/box/spout)
