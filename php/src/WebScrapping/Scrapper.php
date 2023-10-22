@@ -5,15 +5,7 @@ use DOMDocument;
 use DOMXPath;
 use Chuva\Php\WebScrapping\Entity\Paper;
 use Chuva\Php\WebScrapping\Entity\Person;
-
-
 libxml_use_internal_errors(true);
-
-
-
-/**
- * Does the scrapping of a webpage.
- */
 
  class Scrapper {
 

@@ -1,21 +1,10 @@
 <?php
 
 namespace Chuva\Php\WebScrapping;
-
-
-
 use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
 use Box\Spout\Common\Entity\Style\Color;
 
-
-/* $style = (new StyleBuilder())
-->setFontBold()
-->setFontSize(15)
-->setBackgroundColor(Color::LIGHT_GREEN)
-->build();
-
- */
 
 
 class ExcelGenerator {
@@ -25,11 +14,19 @@ class ExcelGenerator {
     $objectPapers = $data[0];
     $arrayPersons = $data[1];
       
-  
-    $filePath = 'dados.xlsx';
+    $filePath = 'resultadoWebscrappring.xlsx';
     $writer = WriterEntityFactory::createXLSXWriter();
     $writer->openToFile($filePath);
   
+
+    function createStyle(){
+      $style = (new StyleBuilder())
+    ->setFontBold()
+    ->setFontSize(15)
+    ->setBackgroundColor(Color::LIGHT_GREEN)
+    ->build();
+    return $style;
+    }
     function headerSpreadsheet(){
       $authorsAndInstitutionArray = [];
     
@@ -43,12 +40,10 @@ class ExcelGenerator {
       
       $headerSpreadsheet = ["ID", "Title", "Type"];
     
-      return $rowHeaderSpreadsheet = array_merge($headerSpreadsheet, $authorsAndInstitutionArray );
+      return $rowHeaderSpreadsheet = array_merge($headerSpreadsheet, $authorsAndInstitutionArray);
     }
     
     
-    $criaHeader = WriterEntityFactory::createRowFromArray(headerSpreadsheet()) ; 
-    $writer->addRow($criaHeader);
     
     
     function arrayOrdenadoAutorEInstituicao($arrayPersons, $writer, $objectPapers){
@@ -77,6 +72,9 @@ class ExcelGenerator {
        
       };
     };
+    
+    $criaHeader = WriterEntityFactory::createRowFromArray(headerSpreadsheet(), createStyle()) ; 
+    $writer->addRow($criaHeader);
     
     $arrayAuthorsAndInstituition = arrayOrdenadoAutorEInstituicao($arrayPersons, $writer, $objectPapers);
     $writer->close(); 
