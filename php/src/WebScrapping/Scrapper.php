@@ -6,8 +6,7 @@ use DOMXPath;
 use Chuva\Php\WebScrapping\Entity\Paper;
 use Chuva\Php\WebScrapping\Entity\Person;
 
-require '../../vendor/autoload.php';
-require './ExcelGenerator.php';
+
 libxml_use_internal_errors(true);
 
 
@@ -18,7 +17,7 @@ libxml_use_internal_errors(true);
 
  class Scrapper {
 
-  public  function getPosts() {
+  public  function getPosts()  {
     $html = file_get_contents(__DIR__ . '/../../assets/origin.html');
     $dom = new \DOMDocument();
     $dom->loadHTML($html);
@@ -55,7 +54,8 @@ libxml_use_internal_errors(true);
 }   
 
   public function scrap($data) {
-   generate($data);
+    $generator = new ExcelGenerator();
+   return $generator->generate($data);
   }
 
  }
