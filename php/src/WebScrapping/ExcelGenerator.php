@@ -46,7 +46,7 @@ class ExcelGenerator {
     
     
     
-    function arrayOrdenadoAutorEInstituicao($arrayPersons, $writer, $objectPapers){
+    function createRowPostsInfos($arrayPersons, $writer, $objectPapers){
       $arrayPersonName = $arrayPersons;
       $arrayPersonInstituition =  $arrayPersons;
       
@@ -76,7 +76,7 @@ class ExcelGenerator {
     $criaHeader = WriterEntityFactory::createRowFromArray(headerSpreadsheet(), createStyle()) ; 
     $writer->addRow($criaHeader);
     
-    $arrayAuthorsAndInstituition = arrayOrdenadoAutorEInstituicao($arrayPersons, $writer, $objectPapers);
+    $arrayAuthorsAndInstituition = createRowPostsInfos($arrayPersons, $writer, $objectPapers);
     $writer->close(); 
     echo 'Vamos Chover!';
   }
