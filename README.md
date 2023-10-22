@@ -5,6 +5,11 @@ Foi apresentado 3 tipos de exercícios, cada um com uma tecnologia, e pudemos es
 
 Neste exercício, o objetivo principal era capturar os dados de uma página HTML e convertê-los em uma planilha.
 
+## Repositório de Estudos
+
+Se você estiver interessado no processo de estudo e implementação que levei a cabo para resolver o exercício, você pode conferir o meu repositório de estudos  📚 [aqui](https://github.com/VictorBelotto/testeWebscrap). 📚
+
+
 ## Sobre o desafio proposto pela Chuva Inc
 
 Em PHP, você deve implementar o [GaloScrapper](https://github.com/chuva-inc/exercicios-2023/tree/master/php/src/WebScrapping). 
