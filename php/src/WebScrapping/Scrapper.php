@@ -1,7 +1,8 @@
 <?php
 
 namespace Chuva\Php\WebScrapping;
-require './php/vendor/autoload.php';
+require '../../vendor/autoload.php';
+require './estruturaExcel.php';
 
 
 use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
@@ -16,39 +17,23 @@ class Scrapper {
 
 /*   public function scrap(\DOMDocument $dom): array {
     
+
+  function buscaPostId() {
+  $arrayId = func_get_args();
+  $posts = Main::run();
+  print_r( $arrayId);
+  
+  foreach ($posts as $post) {
+    foreach ($arrayId as $idPost) {
+      if ($post->id->textContent === $idPost) {
+        print_r($post);
+      }
+    }
+  }
+}
   } */
 
 }
 
-
-
-
-
-
-$filePath = 'dados.xlsx';
-
-$writer = WriterEntityFactory::createXLSXWriter();
-$writer->openToFile($filePath);
-
-
-$authorsAndInstitutionArray = [];
-
-for ($i = 1; $i <= 19; $i++) {
-    $authorName = "Author $i";
-    $authorInstitution = "Author $i Institution";
-    
-    $authorsAndInstitutionArray[] = $authorName;
-    $authorsAndInstitutionArray[] = $authorInstitution;
-}
-
-$TitleSpreadsheet = ["ID", "Title", "Type"];
-
-$rowTitleSpreadsheet = array_merge($TitleSpreadsheet, $authorsAndInstitutionArray );
-
- $criaRow = WriterEntityFactory::createRowFromArray($rowTitleSpreadsheet, $style) ; 
-
-$writer->addRow($criaRow);
-
-$writer->close();
 
 echo 'Ok';
