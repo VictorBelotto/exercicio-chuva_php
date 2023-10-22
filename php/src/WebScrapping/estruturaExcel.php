@@ -15,15 +15,21 @@ $style = (new StyleBuilder())
 ->setBackgroundColor(Color::LIGHT_GREEN)
 ->build();
 
+$filePath = 'dados.xlsx';
+$writer = WriterEntityFactory::createXLSXWriter();
+$writer->openToFile($filePath);
+
+
+
 function headerSpreadsheet(){
   $authorsAndInstitutionArray = [];
 
   for ($i = 1; $i <= 19; $i++) {
   $authorName = "Author $i";
-  $authorInstitution = "Author $i Institution";
+  $authorInstituition = "Author $i Instituition";
   
   $authorsAndInstitutionArray[] = $authorName;
-  $authorsAndInstitutionArray[] = $authorInstitution;
+  $authorsAndInstitutionArray[] = $authorInstituition;
   }
   
   $headerSpreadsheet = ["ID", "Title", "Type"];
@@ -31,50 +37,45 @@ function headerSpreadsheet(){
   return $rowHeaderSpreadsheet = array_merge($headerSpreadsheet, $authorsAndInstitutionArray );
 }
 
-function arrayOrdenadoAutorEInstituicao($arrayPersons){
+
+$criaHeader = WriterEntityFactory::createRowFromArray(headerSpreadsheet()) ; 
+$writer->addRow($criaHeader);
+
+
+function arrayOrdenadoAutorEInstituicao($arrayPersons, $writer){
   $arrayPersonName = $arrayPersons;
   $arrayPersonInstituition =  $arrayPersons;
-  $arrayAuthorsAndInstitution = [];
+  $arrayAuthorsAndInstituition = [];
 
-  for ($i = 0; $i < count($arrayPersonName); $i++) {
-      $authorName = $arrayPersonName[$i]->names;
-      $authorInstitution =  $arrayPersonInstituition[$i]->institutions;
-      
-      $authorsAndInstitutionArray[] = $authorName;
-      $authorsAndInstitutionArray[] = $authorInstitution;
-  }
-  return $arrayAuthorsAndInstitution;
+
+  for ($i = 0; $i < count($arrayPersonName[0]->names); $i++) {
+    $authorName = $arrayPersonName[$i]->names;
+    $authorInstituition =  $arrayPersonInstituition[$i]->instituitions;
+    for($a = 0; $a < count($authorName); $a++){
+    $arrayAuthorsAndInstituition[] = $authorName[$a];
+    $arrayAuthorsAndInstituition[] = $authorInstituition[$a];
+
+    
+    };
+    
+  };
+  return $arrayAuthorsAndInstituition;
+  
 };
+
+
+
 
 $main = new Main();
 $arrays = $main->run();
 $objectPapers = $arrays[0];
 $arrayPersons = $arrays[1];
-$arrayAuthorsAndInstitution = arrayOrdenadoAutorEInstituicao($arrayPersons);
-$arrayPaper = [];
+$arrayAuthorsAndInstituition = arrayOrdenadoAutorEInstituicao($arrayPersons, $writer);
+$arrayToSpreadsheet = array_merge();
 
-for($i = 0; $i < count($objectPapers); $i++){
-  $arrayPapers[] = get_object_vars($objectPapers[$i]);
-};
-
-
-print_r($arrayPapers);
+$datas = WriterEntityFactory::createRowFromArray($arrayAuthorsAndInstituition[0]) ;
+$writer->addRow($datas);  
+$writer->close();
 
 
 
-/* function rowData($arrayPaper, $arrayPerson){
-  $filePath = 'dados.xlsx';
-  $writer = WriterEntityFactory::createXLSXWriter();
-  $writer->openToFile($filePath);
-  $criaHeader = WriterEntityFactory::createRowFromArray(headerSpreadsheet()) ; 
-  
-  
-  $writer->addRow($criaHeader);
-  foreach($arrayObject as $array){
-    $datas = WriterEntityFactory::createRowFromArray($array) ;
-    $writer->addRow($datas);
-  }
-  $writer->close();
-
-}
- */

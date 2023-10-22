@@ -37,13 +37,13 @@ class Main {
             $postAuthorsArray[] = $author->textContent;
         }
     
-        $postInstitutionsArray = [];
+        $postInstituitionsArray = [];
         foreach ($authorsInstituitions as $institution) {
-            $postInstitutionsArray[] = $institution->textContent;
+            $postInstituitionsArray[] = $institution->textContent;
         }
 
         $papers = new Paper($postId,$postTitle,$postType);
-        $persons = new Person($postAuthorsArray, $postInstitutionsArray);
+        $persons = new Person($postAuthorsArray, $postInstituitionsArray);
         $arrayPapers[] = $papers;
         $arrayPersons[] = $persons;
         

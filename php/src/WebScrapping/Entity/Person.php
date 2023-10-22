@@ -7,12 +7,12 @@ namespace Chuva\Php\WebScrapping\Entity;
  */
 class Person {
   public  $names;
-  public  $institutions;
+  public  $instituitions;
 
  
-  public function __construct($name= [], $institution = []) {
+  public function __construct($name= [], $instituitions = []) {
     $this->names = $name;
-    $this->institutions = $institution;
+    $this->instituitions = $instituitions;
   }
 
 }
