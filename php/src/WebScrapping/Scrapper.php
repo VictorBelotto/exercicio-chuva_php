@@ -20,9 +20,9 @@ libxml_use_internal_errors(true);
 
   public  function getPosts() {
     $html = file_get_contents(__DIR__ . '/../../assets/origin.html');
-    $dom = new DOMDocument();
+    $dom = new \DOMDocument();
     $dom->loadHTML($html);
-    $xpath = new DOMXPath($dom);
+    $xpath = new \DOMXPath($dom);
     
     $cardPosts = $xpath->query("//a[@class='paper-card p-lg bd-gradient-left']");
     $arrayPapers = [];

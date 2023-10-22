@@ -13,17 +13,17 @@ require '../../vendor/autoload.php';
 libxml_use_internal_errors(true);
 
 class Main {
-  public function run()
+  public static function run()
     {
         $scrapper = new Scrapper();
         $data = $scrapper->getPosts();
         
         $scrapper->scrap($data);
-        
+
     }
 
 };
     
 
 $main = new Main();
-$main->run();
+$main::run();
