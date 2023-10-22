@@ -26,22 +26,23 @@ libxml_use_internal_errors(true);
       $postAuthors = $xpath->query(".//span", $cardpost);
       $authorsInstituitions = $xpath->query(".//div[@class='authors']/span/@title", $cardpost);
       
+      /*ambos os foreachs guardam o text content dentro de um array e assim separa entre os 62 posts, sendo cada indice todos os autores de um post */
       $postAuthorsArray = [];
       foreach ($postAuthors as $author) {
           $postAuthorsArray[] = $author->textContent;
       }
-  
       $postInstituitionsArray = [];
       foreach ($authorsInstituitions as $institution) {
           $postInstituitionsArray[] = $institution->textContent;
       }
 
+      /*a estrutura da classe Person foi modificada para receber um array de autores e outro de instituiçoes, pois ja tinha criado um metodo que iria trabalhar com a ordem deles */
       $papers = new Paper($postId,$postTitle,$postType);
       $persons = new Person($postAuthorsArray, $postInstituitionsArray);
       $arrayPapers[] = $papers;
       $arrayPersons[] = $persons;
-      
     };    
+    /*aqui é onde retorna os dados para tratar dentro do excel generator */
     return [$arrayPapers, $arrayPersons];
 }   
 
