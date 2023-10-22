@@ -7,7 +7,7 @@ use Chuva\Php\WebScrapping\Entity\Paper;
 use Chuva\Php\WebScrapping\Entity\Person;
 
 require '../../vendor/autoload.php';
-
+require './ExcelGenerator.php';
 libxml_use_internal_errors(true);
 
 
@@ -19,9 +19,7 @@ libxml_use_internal_errors(true);
  class Scrapper {
 
   public  function getPosts() {
-
     $html = file_get_contents(__DIR__ . '/../../assets/origin.html');
-
     $dom = new DOMDocument();
     $dom->loadHTML($html);
     $xpath = new DOMXPath($dom);
@@ -56,18 +54,8 @@ libxml_use_internal_errors(true);
     return [$arrayPapers, $arrayPersons];
 }   
 
-  public function scrap(\DOMDocument $dom): array {
-    return [
-      new Paper(
-        123,
-        'The Nobel Prize in Physiology or Medicine 2023',
-        'Nobel Prize',
-        [
-          new Person('Katalin Karikó', 'Szeged University'),
-          new Person('Drew Weissman', 'University of Pennsylvania'),
-        ]
-      ),
-    ];
+  public function scrap($data) {
+   generate($data);
   }
 
  }
