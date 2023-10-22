@@ -1,12 +1,12 @@
 <?php
+
 namespace Chuva\Php\WebScrapping;
-namespace Chuva\Php\WebScrapping\Entity;
+
 use Chuva\Php\WebScrapping\Entity\Paper;
 use Chuva\Php\WebScrapping\Entity\Person;
-use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 use DOMDocument;
 use DOMXPath;
-use excel;
+
 
 require '../../vendor/autoload.php';
 
@@ -52,28 +52,4 @@ class Main {
   }  
 };
     
-function arrayOrdenadoAutorEInstituicao($authors, $institutions){
-  $authorsAndInstitutionArray = [];
-
-  for ($i = 0; $i < count($authors); $i++) {
-      $authorName = $authors[$i];
-      $authorInstitution =  $institutions[$i];
-      
-      $authorsAndInstitutionArray[] = $authorName;
-      $authorsAndInstitutionArray[] = $authorInstitution;
-  }
-  return $authorsAndInstitutionArray;
-};
-
-$arrays = Main::run();
-$arrayPapers = $arrays[0];
-$arrayPersons = $arrays[1];
-
-$arrayPersonName = $arrayPersons[0]->names;
-$arrayPersonInstituition =  $arrayPersons[0]->institutions;
-
-$authorsAndInstitutionArray = arrayOrdenadoAutorEInstituicao($arrayPersonName,$arrayPersonInstituition);
-print_r($arrayPapers[0]);
-print_r($authorsAndInstitutionArray);
-
 
