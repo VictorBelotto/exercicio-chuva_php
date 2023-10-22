@@ -42,40 +42,41 @@ $criaHeader = WriterEntityFactory::createRowFromArray(headerSpreadsheet()) ;
 $writer->addRow($criaHeader);
 
 
-function arrayOrdenadoAutorEInstituicao($arrayPersons, $writer){
+function arrayOrdenadoAutorEInstituicao($arrayPersons, $writer, $objectPapers){
   $arrayPersonName = $arrayPersons;
   $arrayPersonInstituition =  $arrayPersons;
-  $arrayAuthorsAndInstituition = [];
+  
 
 
-  for ($i = 0; $i < count($arrayPersonName[0]->names); $i++) {
+  for ($i = 0; $i < count($arrayPersons); $i++) {
     $authorName = $arrayPersonName[$i]->names;
     $authorInstituition =  $arrayPersonInstituition[$i]->instituitions;
+    $arrayAuthorsAndInstituition = [];
     for($a = 0; $a < count($authorName); $a++){
+    
     $arrayAuthorsAndInstituition[] = $authorName[$a];
     $arrayAuthorsAndInstituition[] = $authorInstituition[$a];
 
     
     };
+    $linhaPaper = get_object_vars($objectPapers[$i]);
+    $linhaAuthors = $arrayAuthorsAndInstituition;
+    $merged =  array_merge($linhaPaper, $linhaAuthors );
+    $linha =  WriterEntityFactory::createRowFromArray($merged) ;
+    $writer->addRow($linha); 
     
+   
   };
-  return $arrayAuthorsAndInstituition;
+ 
   
 };
-
-
-
 
 $main = new Main();
 $arrays = $main->run();
 $objectPapers = $arrays[0];
 $arrayPersons = $arrays[1];
-$arrayAuthorsAndInstituition = arrayOrdenadoAutorEInstituicao($arrayPersons, $writer);
-$arrayToSpreadsheet = array_merge();
 
-$datas = WriterEntityFactory::createRowFromArray($arrayAuthorsAndInstituition[0]) ;
-$writer->addRow($datas);  
+print_r($objectPapers[0]);
+$arrayAuthorsAndInstituition = arrayOrdenadoAutorEInstituicao($arrayPersons, $writer, $objectPapers);
+
 $writer->close();
-
-
-
