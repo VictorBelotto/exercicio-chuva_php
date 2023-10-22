@@ -1,9 +1,9 @@
 <?php
 
-namespace Chuva\Php\WebScrapping\estruturaExcel;
+namespace Chuva\Php\WebScrapping;
 require'../../vendor/autoload.php';
 
-use Chuva\Php\WebScrapping\Main;
+
 use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
 use Box\Spout\Common\Entity\Style\Color;
@@ -67,14 +67,14 @@ function arrayOrdenadoAutorEInstituicao($arrayPersons, $writer, $objectPapers){
     
    
   };
- 
-  
 };
 
-$main = new Main();
-$arrays = $main->run();
+$Scrapper = new Scrapper();
+$arrays = $Scrapper->getPosts();
 $objectPapers = $arrays[0];
 $arrayPersons = $arrays[1];
+
+
 
 print_r($objectPapers[0]);
 $arrayAuthorsAndInstituition = arrayOrdenadoAutorEInstituicao($arrayPersons, $writer, $objectPapers);
