@@ -7,7 +7,7 @@ Neste exercício, o objetivo principal era capturar os dados de uma página HTML
 
 ## Repositório de Estudos
 
-Se você estiver interessado no processo de estudo e implementação que levei a cabo para resolver o exercício, você pode conferir o meu repositório de estudos  📚 [aqui](https://github.com/VictorBelotto/testeWebscrap). 📚
+Se você estiver interessado no processo de estudo e implementação que levei a cabo para resolver o exercício, você pode conferir o meu repositório de estudos  📚 [aqui](https://github.com/VictorBelotto/EstudoWebscrap). 📚
 
 
 ## Sobre o desafio proposto pela Chuva Inc
