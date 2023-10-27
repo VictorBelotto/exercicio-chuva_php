@@ -8,7 +8,7 @@ use Chuva\Php\WebScrapping\Entity\Person;
 libxml_use_internal_errors(true);
 
  class Scrapper {
-
+  /*Função principal onde é feito toda a raspagem dos dados da origem.html */
   public  function getPosts()  {
     $html = file_get_contents(__DIR__ . '/../../assets/origin.html');
     $dom = new \DOMDocument();
@@ -26,7 +26,8 @@ libxml_use_internal_errors(true);
       $postAuthors = $xpath->query(".//span", $cardpost);
       $authorsInstituitions = $xpath->query(".//div[@class='authors']/span/@title", $cardpost);
       
-      /*ambos os foreachs guardam o text content dentro de um array e assim separa entre os 62 posts, sendo cada indice todos os autores de um post */
+      /*ambos os foreachs guardam o text content dentro de um array e assim separa entre os 62 posts (62 indices no array), sendo cada indice todos os autores e instituições de um post */
+      
       $postAuthorsArray = [];
       foreach ($postAuthors as $author) {
           $postAuthorsArray[] = $author->textContent;
