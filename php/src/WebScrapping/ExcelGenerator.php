@@ -5,7 +5,32 @@ use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
 use Box\Spout\Common\Entity\Style\Color;
 
+class ExcelCreator{
+  static function createStyle(){
+    $style = (new StyleBuilder())
+    ->setFontBold()
+    ->setFontSize(15)
+    ->setBackgroundColor(Color::LIGHT_GREEN)
+    ->build();
+    return $style;
+  }
 
+  static function headerSpreadsheet(){
+    /* Aqui é a construção do cabeçalho da planilha, ele pode ser alterado para a quantidade desejada de autores */
+    $authorsAndInstitutionArray = [];
+    $quantAuthor = 16;
+    for ($i = 1; $i <= $quantAuthor; $i++) {
+    $authorName = "Author $i";
+    $authorInstituition = "Author $i Instituition";
+    
+    $authorsAndInstitutionArray[] = $authorName;
+    $authorsAndInstitutionArray[] = $authorInstituition;
+    }
+    $headerSpreadsheet = ["ID", "Title", "Type"];
+    return $rowHeaderSpreadsheet = array_merge($headerSpreadsheet, $authorsAndInstitutionArray);
+  }
+
+}
 
 class ExcelGenerator {
 
@@ -19,32 +44,6 @@ class ExcelGenerator {
     $writer = WriterEntityFactory::createXLSXWriter();
     $writer->openToFile($filePath);
   
-    function createStyle(){
-      $style = (new StyleBuilder())
-    ->setFontBold()
-    ->setFontSize(15)
-    ->setBackgroundColor(Color::LIGHT_GREEN)
-    ->build();
-    return $style;
-    }
-
-    function headerSpreadsheet(){
-      /* Aqui é a construção do cabeçalho da planilha, ele pode ser alterado para a quantidade desejada de autores */
-      $authorsAndInstitutionArray = [];
-      $quantAuthor = 16;
-      for ($i = 1; $i <= $quantAuthor; $i++) {
-      $authorName = "Author $i";
-      $authorInstituition = "Author $i Instituition";
-      
-      $authorsAndInstitutionArray[] = $authorName;
-      $authorsAndInstitutionArray[] = $authorInstituition;
-      }
-      $headerSpreadsheet = ["ID", "Title", "Type"];
-      return $rowHeaderSpreadsheet = array_merge($headerSpreadsheet, $authorsAndInstitutionArray);
-    }
-    
-    
-    
     
     function createRowPostsInfos($arrayPersons, $objectPapers, $writer ){
       /*Essa função alem de criar a linha da tabela por um array e ordenar o array de autores com a instituição em sequencia */
@@ -74,9 +73,9 @@ class ExcelGenerator {
       };
     };
     
-    $criaHeader = WriterEntityFactory::createRowFromArray(headerSpreadsheet(), createStyle()) ; 
+    $criaHeader = WriterEntityFactory::createRowFromArray(ExcelCreator::headerSpreadsheet(), ExcelCreator::createStyle()) ; 
     $writer->addRow($criaHeader);
-    $arrayAuthorsAndInstituition = createRowPostsInfos($arrayPersons, $objectPapers, $writer);
+    createRowPostsInfos($arrayPersons, $objectPapers, $writer);
     $writer->close(); 
     echo 'Vamos Chover!';
   }
