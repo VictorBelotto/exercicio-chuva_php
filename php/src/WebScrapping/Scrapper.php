@@ -9,7 +9,8 @@ libxml_use_internal_errors(true);
 
  class Scrapper {
   /*Função principal onde é feito toda a raspagem dos dados da origem.html */
-  public  function getPosts()  {
+  
+  public function scrap(): array {
     $html = file_get_contents(__DIR__ . '/../../assets/origin.html');
     $dom = new \DOMDocument();
     $dom->loadHTML($html);
@@ -45,11 +46,6 @@ libxml_use_internal_errors(true);
     };    
     /*aqui é onde retorna os dados para tratar dentro do excel generator */
     return [$arrayPapers, $arrayPersons];
-}   
-
-  public function scrap($data) {
-    $generator = new ExcelGenerator();
-   return $generator->generate($data);
   }
 
  }
