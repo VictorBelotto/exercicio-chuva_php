@@ -2,9 +2,9 @@
 
 namespace Chuva\Php\WebScrapping;
 
-use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
-use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
 use Box\Spout\Common\Entity\Style\Color;
+use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
+use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 
 /**
  * Excel generator class.
@@ -14,7 +14,7 @@ class ExcelGenerator {
   /**
    * Create header style.
    */
-  static function createStyleHeader() {
+  public static function createStyleHeader() {
     $style = (new StyleBuilder())
       ->setFontBold()
       ->setFontSize(15)
@@ -26,7 +26,7 @@ class ExcelGenerator {
   /**
    * Generate the header for the spreadsheet.
    */
-  static function headerSpreadsheet() {
+  public static function headerSpreadsheet() {
     $authorsAndInstitutionArray = [];
     $quantAuthor = 16;
     for ($i = 1; $i <= $quantAuthor; $i++) {
@@ -44,12 +44,15 @@ class ExcelGenerator {
   /**
    * Generate the Excel file.
    */
-  function generate($data): void {
+  public function generate($data): void {
     $data = $data;
     $filePath = __DIR__ . '/../../assets/resultadoWebscraping.xlsx';
     $writer = WriterEntityFactory::createXLSXWriter();
     $writer->openToFile($filePath);
 
+    /**
+     * Generate row infos.
+     */
     function createRowPostsInfos($data, $writer) {
       for ($i = 0; $i < count($data); $i++) {
         $id = $data[$i]->id;
@@ -79,5 +82,5 @@ class ExcelGenerator {
     $writer->close();
     echo 'Vamos Chover!';
   }
-  
+
 }
