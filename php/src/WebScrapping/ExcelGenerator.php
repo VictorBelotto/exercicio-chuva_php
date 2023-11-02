@@ -6,9 +6,13 @@ use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
 use Box\Spout\Common\Entity\Style\Color;
 
-class ExcelGenerator
-{
-
+/**
+ * Excek creator
+ */
+class ExcelGenerator {
+    /**
+     * Does the scrapping of a webpage.
+     */
     static function createStyleHeader()
     {
         $style = (new StyleBuilder())
@@ -72,4 +76,5 @@ class ExcelGenerator
         $writer->close(); 
         echo 'Vamos Chover!';
     }
+    
 }
