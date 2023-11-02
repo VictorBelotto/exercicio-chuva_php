@@ -12,7 +12,7 @@ class Person {
    * @var array
    */
   public $name;
-  
+
   /**
    * Author institutions.
    *
@@ -21,10 +21,11 @@ class Person {
   public $institution;
 
   /**
-  * Builder.
-  */
+   * Builder.
+   */
   public function __construct($names, $institutions) {
     $this->name = $names;
     $this->institution = $institutions;
   }
+
 }
