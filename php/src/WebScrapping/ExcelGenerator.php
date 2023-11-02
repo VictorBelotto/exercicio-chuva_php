@@ -5,36 +5,36 @@ use Box\Spout\Writer\Common\Creator\WriterEntityFactory;
 use Box\Spout\Writer\Common\Creator\Style\StyleBuilder;
 use Box\Spout\Common\Entity\Style\Color;
 
-class ExcelCreator{
-  /*Cria a estilização do cabeçalho */
-  static function createStyleHeader(){
-    $style = (new StyleBuilder())
-    ->setFontBold()
-    ->setFontSize(15)
-    ->setBackgroundColor(Color::LIGHT_GREEN)
-    ->build();
-    return $style;
-  }
-
-  static function headerSpreadsheet(){
-    /* Cria a construção do cabeçalho da planilha.O looping é para poupar a escrita repetitiva de autor e instituição, ainda define a quantidade */
-    $authorsAndInstitutionArray = [];
-    $quantAuthor = 16;
-    for ($i = 1; $i <= $quantAuthor; $i++) {
-    $authorName = "Author $i";
-    $authorInstituition = "Author $i Instituition";
-    
-    $authorsAndInstitutionArray[] = $authorName;
-    $authorsAndInstitutionArray[] = $authorInstituition;
-    }
-    $headerSpreadsheet = ["ID", "Title", "Type"];
-    /*Retorna a linha do cabeçalho formatada */
-    return $rowHeaderSpreadsheet = array_merge($headerSpreadsheet, $authorsAndInstitutionArray);
-  }
-
-}
 
 class ExcelGenerator {
+
+    /*Cria a estilização do cabeçalho */
+    static function createStyleHeader(){
+      $style = (new StyleBuilder())
+      ->setFontBold()
+      ->setFontSize(15)
+      ->setBackgroundColor(Color::LIGHT_GREEN)
+      ->build();
+      return $style;
+    }
+  
+    static function headerSpreadsheet(){
+      /* Cria a construção do cabeçalho da planilha.O looping é para poupar a escrita repetitiva de autor e instituição, ainda define a quantidade */
+      $authorsAndInstitutionArray = [];
+      $quantAuthor = 16;
+      for ($i = 1; $i <= $quantAuthor; $i++) {
+      $authorName = "Author $i";
+      $authorInstituition = "Author $i Instituition";
+      
+      $authorsAndInstitutionArray[] = $authorName;
+      $authorsAndInstitutionArray[] = $authorInstituition;
+      }
+      $headerSpreadsheet = ["ID", "Title", "Type"];
+      /*Retorna a linha do cabeçalho formatada */
+      return $rowHeaderSpreadsheet = array_merge($headerSpreadsheet, $authorsAndInstitutionArray);
+    }
+  
+ 
 
   function generate($data) : void {
     /*Data é um array que contém 2 dados: Um array de objetos da classe Paper e um array que armazena Person */
@@ -72,7 +72,7 @@ class ExcelGenerator {
       };
     };
     
-    $criaHeader = WriterEntityFactory::createRowFromArray(ExcelCreator::headerSpreadsheet(), ExcelCreator::createStyleHeader()) ; 
+    $criaHeader = WriterEntityFactory::createRowFromArray($this->headerSpreadsheet(), $this->createStyleHeader()) ; 
     $writer->addRow($criaHeader);
     createRowPostsInfos($arrayPersons, $objectPapers, $writer);
     $writer->close(); 
