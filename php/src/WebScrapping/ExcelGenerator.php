@@ -47,12 +47,12 @@ class ExcelGenerator {
         /* Essa função alem de criar as linhas da tabela por um array, também ordena o array de em sequência de autor1 e instituição1 e assim por diante */
         function createRowPostsInfos($arrayPersons, $objectPapers, $writer ) {
             $arrayPersonName = $arrayPersons;
-            $arrayPersonInstituition =  $arrayPersons;
+            $arrayPersonInstitution =  $arrayPersons;
 
             /* O loop recebe a quantidade de posts relativos do array de persons, pois cada índice de persons foi criado a partir de um post  */
             for ($i = 0; $i < count($arrayPersons); $i++) {
-                $authorName = $arrayPersonName[$i]->names;
-                $authorInstituition =  $arrayPersonInstituition[$i]->instituitions;
+                $authorName = $arrayPersonName[$i]->name;
+                $authorInstituition =  $arrayPersonInstitution[$i]->institution;
                 $arrayAuthorsAndInstituition = [];
 
                 /* Este loop recebe a quantidade de autores relativos à posição acima para realizar a ordem de autor 1 e instituição 1.... */
