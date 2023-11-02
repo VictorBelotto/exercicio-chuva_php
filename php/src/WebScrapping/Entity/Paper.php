@@ -22,11 +22,12 @@ class Paper {
    */
   public  $type;
 
+  public $authors;
   
-  public function __construct($id, $title, $type ) {
+  public function __construct($id, $title, $type, $authors ) {
     $this->id = $id;
     $this->title = $title;
     $this->type = $type;
-
+    $this->authors = $authors;
   }
 }

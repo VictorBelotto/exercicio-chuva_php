@@ -10,8 +10,8 @@ class Person {
   public  $institution;
 
  
-  public function __construct($name, $institutions ) {
-    $this->name = $name;
+  public function __construct($names, $institutions ) {
+    $this->name = $names;
     $this->institution = $institutions;
   }
 
